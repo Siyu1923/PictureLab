@@ -21,16 +21,16 @@ public class IntArrayWorkerTester
     worker.print();
   }
   
-  /** Method to test getCount*/
-//  public static void testGetCount()
-//  {
-//    IntArrayWorker worker = new IntArrayWorker();
-//    int[][] nums = new int[3][4];
-//    worker.setMatrix(nums);
-//    worker.fillPattern1();
-//    int count = worker.getCount(1);
-//    System.out.println("Count should be 6 and count is " + count);
-//  }
+//  Method to test getCount]
+  public static void testGetCount()
+  {
+   IntArrayWorker worker = new IntArrayWorker();
+   int[][] nums = new int[3][4];
+   worker.setMatrix(nums);
+    worker.fillPattern1();
+   int count = worker.getCount(1);
+   System.out.println("Count should be 6 and count is " + count);
+  }
   
   /** Method to test getTotal */
   public static void testGetTotal()
@@ -44,6 +44,15 @@ public class IntArrayWorkerTester
   
   /** Method to test getTotalNested */
   public static void testGetTotalNested()
+  {
+    IntArrayWorker worker = new IntArrayWorker();
+    int [][] nums2 = {{1, 2, 3}, {4, 5, 6}};
+    worker.setMatrix(nums2);
+    int total = worker.getTotalNested();
+    System.out.println("Total should be 21 and is " + total);
+  }
+  
+  public static void getCount()
   {
     IntArrayWorker worker = new IntArrayWorker();
     int [][] nums2 = {{1, 2, 3}, {4, 5, 6}};
@@ -95,10 +104,10 @@ public class IntArrayWorkerTester
   {
     testSetMatrix();
     testFillPattern1();
-    //testGetCount(); 
+    testGetCount(); 
     testGetTotal();
     testGetTotalNested();
-    //testGetLargest();
-    //testGetColTotal();
+    testGetLargest();
+    testGetColTotal();
   }
 }
