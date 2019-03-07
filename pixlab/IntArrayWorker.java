@@ -55,11 +55,9 @@ public class IntArrayWorker
   public int getColTotal(int a)
   {
       int sum = 0;
-      for (int x=0; x<matrix.length; x++)
-     {for (int y=0; y<matrix[a].length; y++)
-        {sum += y}
-     }
-     return max;
+      for (int y=0; y<matrix.length; y++)
+        {sum += matrix[y][a];}
+     return sum;
   }  
   
   /**
