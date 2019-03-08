@@ -284,9 +284,12 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture water = new Picture("water.jpg");
-    water.fixUnderWater();
-    water.explore();
+    Picture waifu = new Picture("waifu.jpg");
+    Picture yukino = new Picture("yukino.jpg");
+    Picture chiaki = new Picture("chiaki.jpg");
+    waifu.explore();
+    yukino.explore();
+    chiaki.explore();
   }
   
 } // this } is the end of class Picture, put all new methods before this
