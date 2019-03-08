@@ -144,12 +144,17 @@ public class Picture extends SimplePicture
   public void fixUnderWater()
   {
     Pixel[][] water = this.getPixels2D();
-    for (Pixel[] rowArray : water)
+    for (int x=0; x<160; x++)
     {
-      for (Pixel fish : rowArray)
+      for (int y=150; y<460; y++)
       {
-          fish.setRed(0);
-          fish.setGreen(0);
+          
+          if (water[x][y].getRed()<28 && (water[x][y].getBlue()>153 && (water[x][y].getGreen()>150 && water[x][y].getGreen()<175)))
+          {
+              water[x][y].setRed(water[x][y].getRed()+70);
+              water[x][y].setBlue(water[x][y].getBlue()-50);
+              water[x][y].setGreen(water[x][y].getGreen()-50);
+          }
       }
     }
   }
