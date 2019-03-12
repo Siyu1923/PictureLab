@@ -237,12 +237,11 @@ public class Picture extends SimplePicture
     Pixel xpix = null;
     Pixel ypix = null;
     int length = pixels.length;
-    int width = pixels[0].length;
-    for (int x = 0; x<pixels.length; x++)
+    for (int x = 0; x<length; x++)
     {
-       for (int y = 0; y<pixels[0].length; y++)
+       for (int y = 0; y<x; y++)
         {xpix = pixels[x][y];
-        ypix = pixels[length-x-1][width-y-1];
+        ypix = pixels[y][x];
         ypix.setColor(xpix.getColor());}
     } 
    }
@@ -266,6 +265,50 @@ public class Picture extends SimplePicture
         leftPixel = pixels[row][col];      
         rightPixel = pixels[row]                       
                          [mirrorPoint - col + mirrorPoint];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+      count++;
+    }
+    System.out.println(count);
+  }
+  
+  public void mirrorArms()
+  {
+    int mirrorPoint = 195;
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int count = 0;
+    Pixel[][] pixels = this.getPixels2D();
+    
+    // loop through the rows
+    for (int row = 158; row < 196; row++)
+    {
+      for (int col = 103; col < 292; col++)
+      {
+        
+        leftPixel = pixels[row][col];      
+        rightPixel = pixels[mirrorPoint-row+mirrorPoint][col];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+    }
+  }
+  
+  public void mirrorGull()
+  {
+    int mirrorPoint = 335;
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int count = 0;
+    Pixel[][] pixels = this.getPixels2D();
+    
+    // loop through the rows
+    for (int row = 231; row < 331; row++)
+    {
+      for (int col = 237; col < 347; col++)
+      {
+        
+        leftPixel = pixels[row][col];      
+        rightPixel = pixels[row][mirrorPoint-col+mirrorPoint];
         rightPixel.setColor(leftPixel.getColor());
       }
     }
@@ -352,9 +395,9 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture caterpillar = new Picture("caterpillar.jpg");
-    caterpillar.mirrorDiagonal();
-    caterpillar.explore();
+    Picture seagull = new Picture("seagull.jpg");
+    seagull.mirrorGull();
+    seagull.explore();
   }
   
 } // this } is the end of class Picture, put all new methods before this
