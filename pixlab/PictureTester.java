@@ -17,6 +17,54 @@ public class PictureTester
     beach.explore();
   }
   
+  public static void testKeepOnlyBlue()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.keepOnlyBlue();
+    beach.explore();
+  }
+  
+  public static void testKeepOnlyRed()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.keepOnlyRed();
+    beach.explore();
+  }
+  
+  public static void testKeepOnlyGreen()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.keepOnlyGreen();
+    beach.explore();
+  }
+  
+  public static void testNegate()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.negate();
+    beach.explore();
+  }
+  
+  public static void testGrayscale()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.grayScale();
+    beach.explore();
+  }
+  
+  public static void testFixUnderwater()
+  {
+    Picture water = new Picture("water.jpg");
+    water.explore();
+    water.fixUnderWater();
+    water.explore();
+  }
+  
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
@@ -24,6 +72,14 @@ public class PictureTester
     caterpillar.explore();
     caterpillar.mirrorVertical();
     caterpillar.explore();
+  }
+  
+  public static void testMirrorDiagonal()
+  {
+    Picture beach = new Picture("beach.jpg");
+    beach.explore();
+    beach.mirrorDiagonal();
+    beach.explore();
   }
   
   /** Method to test mirrorTemple */
@@ -35,11 +91,27 @@ public class PictureTester
     temple.explore();
   }
   
+  public static void testMirrorArms()
+  {
+    Picture snowman = new Picture("snowman.jpg");
+    snowman.explore();
+    snowman.mirrorArms();
+    snowman.explore();
+  }
+  
+  public static void testMirrorGull()
+  {
+    Picture seagull = new Picture("seagull.jpg");
+    seagull.explore();
+    seagull.mirrorGull();
+    seagull.explore();
+  }
+  
   /** Method to test the collage method */
   public static void testCollage()
   {
     Picture canvas = new Picture("640x480.jpg");
-    canvas.createCollage();
+    canvas.myCollage();
     canvas.explore();
   }
   
@@ -59,18 +131,18 @@ public class PictureTester
     // and comment out the ones you don't want
     // to run
     testZeroBlue();
-    //testKeepOnlyBlue();
-    //testKeepOnlyRed();
-    //testKeepOnlyGreen();
-    //testNegate();
-    //testGrayscale();
-    //testFixUnderwater();
-    //testMirrorVertical();
-    //testMirrorTemple();
-    //testMirrorArms();
-    //testMirrorGull();
-    //testMirrorDiagonal();
-    //testCollage();
+    testKeepOnlyBlue();
+    testKeepOnlyRed();
+    testKeepOnlyGreen();
+    testNegate();
+    testGrayscale();
+    testFixUnderwater();
+    testMirrorVertical();
+    testMirrorTemple();
+    testMirrorArms();
+    testMirrorGull();
+    testMirrorDiagonal();
+    testCollage();
     //testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();

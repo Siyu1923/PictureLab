@@ -10,7 +10,7 @@ import java.util.List; // resolves problem with java.awt.List and java.util.List
  * A class that represents a picture.  This class inherits from 
  * SimplePicture and allows the student to add functionality to
  * the Picture class.  
- * 
+ *
  * @author Barbara Ericson ericson@cc.gatech.edu
  */
 public class Picture extends SimplePicture 
@@ -107,6 +107,32 @@ public class Picture extends SimplePicture
       {
         pixelObj.setRed(0);
         pixelObj.setGreen(0);
+      }
+    }
+  }
+  
+  public void keepOnlyRed()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setBlue(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  
+  public void keepOnlyGreen()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setBlue(0);
+        pixelObj.setRed(0);
       }
     }
   }
@@ -344,6 +370,31 @@ public class Picture extends SimplePicture
       }
     }   
   }
+  
+  public void copy(Picture fromPic, 
+                 int fSR,      int fSC,
+                 int fER,      int fEC)
+  {
+    Pixel fromPixel = null;
+    Pixel toPixel = null;
+    Pixel[][] toPixels = this.getPixels2D();
+    Pixel[][] fromPixels = fromPic.getPixels2D();
+    for (int fromRow = fSR, toRow = fER; 
+         fromRow < fromPixels.length &&
+         toRow < toPixels.length; 
+         fromRow++, toRow++)
+    {
+      for (int fromCol = fSC, toCol = fEC; 
+           fromCol < fromPixels[0].length &&
+           toCol < toPixels[0].length;  
+           fromCol++, toCol++)
+      {
+        fromPixel = fromPixels[fromRow][fromCol];
+        toPixel = toPixels[toRow][toCol];
+        toPixel.setColor(fromPixel.getColor());
+      }
+    }   
+  }
 
   /** Method to create a collage of several pictures */
   public void createCollage()
@@ -360,6 +411,17 @@ public class Picture extends SimplePicture
     this.copy(flower2,500,0);
     this.mirrorVertical();
     this.write("collage.jpg");
+  }
+  
+  public void myCollage()
+  {
+    Picture waifu = new Picture("waifu.jpg");
+    Picture chiaki = new Picture("chiaki.jpg");
+    Picture yukino = new Picture("yukino.jpg");
+    this.copy(waifu,0,0);
+    this.copy(chiaki,720,1080);
+    this.copy(yukino,425,507);
+    this.write("myCollage.jpg");
   }
   
   
@@ -395,9 +457,8 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture seagull = new Picture("seagull.jpg");
-    seagull.mirrorGull();
-    seagull.explore();
+    Picture collage = new Picture("myCollage.jpg");
+    collage.explore();
   }
   
 } // this } is the end of class Picture, put all new methods before this
