@@ -371,7 +371,8 @@ public class Picture extends SimplePicture
     }   
   }
   
-  public void copy(Picture fromPic, 
+   public void copy(Picture fromPic, 
+                 int startRow, int startCol,
                  int fSR,      int fSC,
                  int fER,      int fEC)
   {
@@ -379,13 +380,13 @@ public class Picture extends SimplePicture
     Pixel toPixel = null;
     Pixel[][] toPixels = this.getPixels2D();
     Pixel[][] fromPixels = fromPic.getPixels2D();
-    for (int fromRow = fSR, toRow = fER; 
-         fromRow < fromPixels.length &&
+    for (int fromRow = fSR, toRow = startRow; 
+         fromRow < fER &&
          toRow < toPixels.length; 
          fromRow++, toRow++)
     {
-      for (int fromCol = fSC, toCol = fEC; 
-           fromCol < fromPixels[0].length &&
+      for (int fromCol = fSC, toCol = startCol; 
+           fromCol < fEC &&
            toCol < toPixels[0].length;  
            fromCol++, toCol++)
       {
@@ -415,12 +416,10 @@ public class Picture extends SimplePicture
   
   public void myCollage()
   {
-    Picture waifu = new Picture("waifu.jpg");
     Picture chiaki = new Picture("chiaki.jpg");
     Picture yukino = new Picture("yukino.jpg");
-    this.copy(waifu,0,0);
-    this.copy(chiaki,720,1080);
-    this.copy(yukino,425,507);
+    this.copy(chiaki,0,0,10,20,400,400);
+    this.copy(yukino,0,0,400,720,1140,1260);
     this.write("myCollage.jpg");
   }
   
@@ -457,8 +456,12 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture collage = new Picture("myCollage.jpg");
-    collage.explore();
+    Picture chiaki = new Picture("chiaki.jpg");
+    Picture waifu = new Picture("waifu.jpg");
+    Picture yukino = new Picture("yukino.jpg");
+    chiaki.explore();
+    yukino.explore();
+    waifu.explore();
   }
   
 } // this } is the end of class Picture, put all new methods before this
