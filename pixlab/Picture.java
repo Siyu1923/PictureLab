@@ -417,9 +417,11 @@ public class Picture extends SimplePicture
   public void myCollage()
   {
     Picture chiaki = new Picture("chiaki.jpg");
+    Picture waifu = new Picture("waifu.jpg");
     Picture yukino = new Picture("yukino.jpg");
-    this.copy(chiaki,0,0,10,20,400,400);
-    this.copy(yukino,0,0,400,720,1140,1260);
+    this.copy(waifu,574,640,0,417,617,1080);
+    this.copy(chiaki,420,1499,0,5,635,300);
+    this.copy(yukino,466,120,23,100,657,492);
     this.write("myCollage.jpg");
   }
   
@@ -427,25 +429,65 @@ public class Picture extends SimplePicture
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
     */
-  public void edgeDetection(int edgeDist)
+   public void oldEdgeDetection(int edgeDist)
   {
-    Pixel leftPixel = null;
+    Pixel currentPixel = null;
     Pixel rightPixel = null;
     Pixel[][] pixels = this.getPixels2D();
     Color rightColor = null;
+    Color downColor = null;
     for (int row = 0; row < pixels.length; row++)
     {
       for (int col = 0; 
            col < pixels[0].length-1; col++)
       {
-        leftPixel = pixels[row][col];
+        currentPixel = pixels[row][col];
         rightPixel = pixels[row][col+1];
         rightColor = rightPixel.getColor();
-        if (leftPixel.colorDistance(rightColor) > 
+        if (currentPixel.colorDistance(rightColor) > 
             edgeDist)
-          leftPixel.setColor(Color.BLACK);
+          currentPixel.setColor(Color.BLACK);
         else
-          leftPixel.setColor(Color.WHITE);
+          currentPixel.setColor(Color.WHITE);
+      }
+    }
+  }
+   public void edgeDetection(int edgeDist)
+  {
+    Pixel currentPixel = null;
+    Pixel rightPixel = null;
+    Pixel downPixel = null;
+    Pixel[][] pixels = this.getPixels2D();
+    Color rightColor = null;
+    Color downColor = null;
+    for (int row = 0; row < pixels.length; row++)
+    {
+      for (int col = 0; 
+           col < pixels[0].length-1; col++)
+      {
+        currentPixel = pixels[row][col];
+        rightPixel = pixels[row][col+1];
+        rightColor = rightPixel.getColor();
+        if (currentPixel.colorDistance(rightColor) > 
+            edgeDist)
+          currentPixel.setColor(Color.BLACK);
+        else
+          currentPixel.setColor(Color.WHITE);
+      }
+    }
+    for (int row = 1; row < pixels.length; row++)
+    {
+      for (int col = 0; 
+           col < pixels[0].length; col++)
+      {
+        currentPixel = pixels[row][col];
+        downPixel = pixels[row-1][col];
+        downColor = downPixel.getColor();
+        if (currentPixel.colorDistance(downColor) >
+            edgeDist)
+          currentPixel.setColor(Color.BLACK);
+        else
+          currentPixel.setColor(Color.WHITE);
       }
     }
   }
@@ -456,12 +498,8 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture chiaki = new Picture("chiaki.jpg");
-    Picture waifu = new Picture("waifu.jpg");
-    Picture yukino = new Picture("yukino.jpg");
-    chiaki.explore();
-    yukino.explore();
-    waifu.explore();
+    Picture s = new Picture("yukino.jpg");
+    s.explore();
   }
   
 } // this } is the end of class Picture, put all new methods before this

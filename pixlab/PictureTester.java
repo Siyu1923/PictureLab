@@ -110,7 +110,7 @@ public class PictureTester
   /** Method to test the collage method */
   public static void testCollage()
   {
-    Picture canvas = new Picture("moon-surface.jpg");
+    Picture canvas = new Picture("bg.png");
     canvas.myCollage();
     canvas.explore();
   }
@@ -119,7 +119,7 @@ public class PictureTester
   public static void testEdgeDetection()
   {
     Picture swan = new Picture("swan.jpg");
-    swan.edgeDetection(10);
+    swan.oldEdgeDetection(10);
     swan.explore();
   }
   
